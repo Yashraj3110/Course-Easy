@@ -1,0 +1,109 @@
+/*////////////////////////////////////////////////////////////////////////////////// --------------------  UserPage */
+
+#Adminpage {
+    overflow-y: hidden;
+}
+
+#admin-page {
+    display: flex;
+    /* Use flexbox to arrange items in a row */
+}
+
+#admin-page .sidebar {
+    flex: 0 0 300px;
+    /* Set a fixed width for the sidebar */
+    background-color: #f0f0f0;
+    padding: 20px;
+}
+
+#admin-page .sidebar h2 {
+    margin-top: 0;
+}
+
+#admin-page .sidebar nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+#admin-page .sidebar nav ul li {
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+#admin-page .content {
+    flex: 1;
+    /* Allow content to grow to fill remaining space */
+    padding: 20px;
+    background-color: #ffffff;
+    height: 95vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: flex-start;
+    flex-wrap: wrap;
+}
+
+#admin-page .content .iframe {
+    flex: 1;
+    /* Allow content to grow to fill remaining space */
+    padding: 20px 40px 0px 40px;
+    display: flex;
+    justify-content: center;
+    margin-top: 0px;
+}
+
+/* Ensure content doesn't overflow horizontally on smaller screens */
+@media (max-width: 768px) {
+    #admin-page {
+        flex-direction: column;
+        /* Change to column layout on smaller screens */
+    }
+
+    #admin-page .sidebar {
+        flex: none;
+        width: 100%;
+        margin-bottom: 20px;
+        height: auto;
+    }
+
+    #admin-page .content {
+        flex: none;
+        /* margin-top: 16%; */
+        width: 100%;
+    }
+
+    #admin-page .toggle-btn {
+        position: absolute;
+        right: 8px;
+        top: 63px;
+    }
+}
+
+@media (min-width: 761px) {
+    .toggle-btn {
+        display: none;
+    }
+}
+
+.adminTopbar {
+    background: linear-gradient(to right, rgb(0 8 56), rgb(2 0 41));
+    margin-bottom: 0;
+    height: 37px;
+    display: flex;
+    align-content: center;
+    flex-wrap: wrap;
+    padding-bottom: 3px;
+}
+
+.navbar-links.open {
+    display: none;
+}
+
+.navlist.open {
+    display: none;
+}
+
+.toogled{
+    overflow: visible;
+    width: 6.5rem !important;
+}

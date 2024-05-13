@@ -1,0 +1,261 @@
+/*////////////////////////////////////////////////////////////////////////////////// --------------------  UserPage */
+
+#Profilepage {
+    overflow-y: hidden;
+}
+
+#user-page {
+    display: flex;
+    /* Use flexbox to arrange items in a row */
+}
+
+#user-page .sidebar {
+    flex: 0 0 300px;
+    /* Set a fixed width for the sidebar */
+    background-color: #f0f0f0;
+    padding: 20px;
+}
+
+#user-page .sidebar h2 {
+    margin-top: 0;
+}
+
+#user-page .sidebar nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+#user-page .sidebar nav ul li {
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+#user-page .content {
+    flex: 1;
+    /* Allow content to grow to fill remaining space */
+    padding: 20px;
+    background-color: #ffffff;
+    height: 95vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: flex-start;
+    flex-wrap: wrap;
+}
+
+#user-page .content .iframe {
+    flex: 1;
+    /* Allow content to grow to fill remaining space */
+    padding: 20px 40px 0px 40px;
+    display: flex;
+    justify-content: center;
+    margin-top: 0px;
+}
+
+/* Ensure content doesn't overflow horizontally on smaller screens */
+@media (max-width: 768px) {
+    #user-page {
+        flex-direction: column;
+        /* Change to column layout on smaller screens */
+    }
+
+    #user-page .sidebar {
+        flex: none;
+        width: 100%;
+        margin-bottom: 20px;
+        height: auto;
+    }
+
+    #user-page .content {
+        flex: none;
+        /* margin-top: 16%; */
+        width: 100%;
+    }
+
+    #user-page .toggle-btn {
+        position: absolute;
+        right: 8px;
+        top: 63px;
+    }
+}
+
+@media (min-width: 761px) {
+    .toggle-btn {
+        display: none;
+    }
+}
+
+.UserTopbar {
+    background: linear-gradient(to right, rgb(0 8 56), rgb(2 0 41));
+    margin-bottom: 0;
+    height: 37px;
+    display: flex;
+    align-content: center;
+    flex-wrap: wrap;
+    padding-bottom: 3px;
+}
+
+.navbar-links.open {
+    display: none;
+}
+
+.navlist.open {
+    display: none;
+}
+
+/* ///////////////////////////////////////////////////////////////////////// USER LOG */
+
+#UserLogform p {
+    color: black;
+}
+
+#UserLogform .modal-content {
+    right: 6rem;
+    width: 43rem;
+    border-radius: 16px;
+    margin-top: 20%;
+    height: 33rem;
+}
+
+#UserLogform .modalLog {
+    display: flex;
+    background: url('../media/logbg.jpg') no-repeat;
+    background-size: cover;
+    border-radius: 16px;
+    height: 30rem;
+}
+
+#UserLogform .logBrief {
+    flex-basis: 30%;
+    height: 100%;
+    padding: 0 5px;
+
+
+}
+
+#UserLogform .logBrief i {
+    color: #fffefe;
+    position: absolute;
+    left: 10px;
+    top: 3px;
+    cursor: pointer;
+}
+
+#UserLogform .logBrief p {
+    padding-top: 30px;
+    font-family: monospace;
+    color: #ffffff;
+    font-size: 17px;
+}
+
+#UserLogform .changeform {
+    padding-left: 20px;
+}
+
+/* /////////--------------- SIGN-UP */
+
+#UserLogform .Signup {
+    flex-basis: 70%;
+    background: #fffefe;
+    border-top-right-radius: 16px;
+    border-bottom-right-radius: 16px;
+}
+
+#UserLogform .Signup div {
+    width: auto;
+    margin: 10px 20px;
+}
+
+#UserLogform .Signup div input {
+    border: none;
+    border-bottom: 1px solid rgb(150, 150, 150);
+    border-radius: 0;
+    box-shadow: none;
+    width: 95%;
+    margin-left: 16px;
+}
+
+#UserLogform .Signup button {
+ 
+    background-color: rgb(68, 114, 141);
+    border: none;
+    border-radius: 20px;
+    padding: 5px;
+    color: #fffefe;
+    width: 90%;
+}
+
+/* /////////--------------- SIGN-IN */
+#UserLogform .Signin {
+    flex-basis: 70%;
+    background: #fffefe;
+    border-top-right-radius: 16px;
+    border-bottom-right-radius: 16px;
+}
+
+#UserLogform .Signin div {
+    width: auto;
+    margin: 10px 20px;
+}
+
+#UserLogform .Signin div input {
+    border: none;
+    border-bottom: 1px solid rgb(150, 150, 150);
+    border-radius: 0;
+    box-shadow: none;
+    width: 95%;
+    margin-left: 16px;
+}
+
+#UserLogform .Signin button {
+   
+    background-color: rgb(68, 114, 141);
+    border: none;
+    border-radius: 20px;
+    padding: 5px;
+    color: #fffefe;
+    width: 90%;
+}
+
+@media (max-width: 768px) {
+    #UserLogform .modal-content {
+        width: 100%;
+        right: 0;
+        margin-top: 7%;
+
+    }
+
+    #UserLogform .modalLog {
+        flex-direction: column;
+    }
+
+    #UserLogform .logBrief {
+        flex-basis: auto;
+        height: auto;
+        padding: 20px;
+    }
+
+    #UserLogform .Signup,
+    #UserLogform .Signin {
+        flex-basis: auto;
+        border-bottom-right-radius: 16px;
+        border-bottom-left-radius: 16px;
+        border-top-right-radius: 0;
+    }
+
+    #UserLogform .Signup div,
+    #UserLogform .Signin div {
+        margin: 10px 0;
+    }
+
+    #UserLogform .Signup button,
+    #UserLogform .Signin button {
+        margin: 20px 0;
+    }
+
+    #UserLogform .changeform {
+        padding-left: 20px;
+        padding-bottom: 20px;
+    }
+
+}

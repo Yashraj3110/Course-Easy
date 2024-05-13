@@ -1,0 +1,789 @@
+body {
+    overflow-x: hidden;
+    width: auto;
+}
+
+
+/*################################################################################################################################---- Banner */
+#banner {
+    background: linear-gradient(to right, rgb(0 8 56), rgb(2 0 41));
+}
+.container-fluid{
+    padding: 0px 7rem !important;
+}
+@media screen and (max-width: 1200px) {
+    .container-fluid{
+        padding: 0px 0px !important;
+    }
+}
+
+#banner h4 {
+    font-size: 30px;
+    color: rgb(172, 172, 172);
+}
+
+#banner p {
+    font-size: 20px;
+    color: rgb(172, 172, 172);
+    font-family: math;
+}
+
+@media screen and (max-width: 940px) {
+    #banner #img1 {
+        display: none;
+    }
+}
+
+/*################################################################################################################################---- WHON */
+
+#Whon .row {
+    display: flex;
+    background: linear-gradient(125deg, #dfdeff, #ffffff);
+    border-radius: 34px;
+    align-items: center;
+    height: 17rem;
+}
+
+#Whon .row #col {
+    display: flex;
+    justify-content: flex-end;
+}
+
+#Whon .row button {
+    background: #0070c3;
+    color: white;
+    width: 147px;
+    font-size: 21px;
+    border: none;
+    border-radius: 7px;
+    padding: 5px;
+    font-family: monospace;
+    transition: filter 0.3s ease;
+}
+
+#Whon .row button:hover {
+    filter: drop-shadow(0 0 4px rgb(126, 125, 125));
+    /* Apply drop shadow effect on hover */
+}
+
+
+#Whon .row p {
+    font-size: 20px;
+    width: auto;
+    max-width: 879px;
+    color: black;
+    display: flex;
+    justify-content: center;
+    padding-right: 20px;
+    font-family: math;
+    padding-left: 20px;
+}
+
+#Whon .row img {
+    width: 21rem;
+    border-top-right-radius: 34px;
+    border-bottom-right-radius: 34px;
+}
+
+
+@media screen and (max-width: 1200px) {
+    #Whon .row p {
+        font-size: 1em;
+    }
+
+    #Whon .row {
+        width: auto;
+        display: flex;
+        flex-wrap: wrap;
+        padding-right: 0;
+        background: linear-gradient(to bottom, rgb(255 255 255), rgb(239 239 239));
+        height: 47vh;
+    }
+
+    #Whon .row img {
+        width: 100%;
+        height: 46vh;
+
+        border-bottom-left-radius: 35px;
+
+    }
+
+    #Whon .row #col {
+        padding: 0;
+    }
+
+    #Whon .row #col2 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-bottom: 12px;
+    }
+
+    #Whon .row p {
+        font-size: 1em;
+        width: auto;
+        font-family: math;
+    }
+
+    #Whon {
+        padding: 0px 10%;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    #Whon .row {
+        width: auto;
+        display: flex;
+        flex-wrap: nowrap;
+        padding-right: 0;
+        background: linear-gradient(125deg, #dfdeff, #ffffff);
+        height: 28rem;
+        flex-direction: column-reverse;
+    }
+
+    #Whon .row p {
+        font-size: 1em;
+    }
+
+    #Whon .row>div {
+        width: 100%;
+        /* Make each div take full width */
+        padding: 10px;
+        /* Add some padding to each item */
+    }
+
+    #Whon .row img {
+        width: 100%;
+        height: 14rem;
+        /* Auto height for better responsiveness */
+        /* Auto height for better responsiveness */
+        border-top-right-radius: 34px;
+        border-top-left-radius: 34px;
+        border-bottom-right-radius: 0px;
+        border-bottom-left-radius: 0px;
+    }
+}
+
+/*################################################################################################################################---- Beginer */
+
+
+
+
+#Beginer .row {
+    display: flex;
+    background: linear-gradient(125deg, #ffffff, #dfdeff);
+    border-radius: 34px;
+    align-items: center;
+    height: 17rem;
+}
+
+#Beginer .row button {
+    background: #0070c3;
+    color: white;
+    width: 147px;
+    font-size: 21px;
+    border: none;
+    border-radius: 7px;
+    padding: 5px;
+    font-family: monospace;
+    transition: filter 0.3s ease;
+}
+
+#Beginer .row button:hover {
+    filter: drop-shadow(0 0 4px rgb(126, 125, 125));
+    /* Apply drop shadow effect on hover */
+}
+
+
+#Beginer .row p {
+    font-size: 20px;
+    width: auto;
+    max-width: 879px;
+    color: black;
+    display: flex;
+    justify-content: center;
+    padding-right: 20px;
+    font-family: math;
+}
+
+#Beginer .row img {
+    width: 21rem;
+    border-top-left-radius: 34px;
+    border-bottom-left-radius: 34px;
+}
+
+
+@media screen and (max-width: 1200px) {
+
+    #Beginer .row {
+        width: auto;
+        display: flex;
+        flex-wrap: wrap;
+        padding-right: 0;
+        background: linear-gradient(125deg, #ffffff, #dfdeff);
+        height: 47vh;
+    }
+
+    #Beginer .row img {
+        width: 100%;
+        height: 46vh;
+
+        border-bottom-left-radius: 35px;
+
+    }
+
+    #Beginer .row #col {
+        padding: 0;
+    }
+
+    #Beginer .row p {
+        font-size: 1em;
+    }
+
+    #Beginer .row #col2 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-bottom: 12px;
+    }
+
+    #Beginer .row p {
+        font-size: 1em;
+        width: auto;
+    }
+
+    #Beginer {
+        padding: 0px 10%;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    #Beginer .row {
+        width: auto;
+        display: flex;
+        flex-wrap: wrap;
+        padding-right: 0;
+        background: linear-gradient(125deg, #ffffff, #dfdeff);
+        height: 30rem;
+        /* Change height to min-height for better responsiveness */
+    }
+
+    #Beginer .row p {
+        font-size: 1em;
+    }
+
+    #Beginer .row>div {
+        width: 100%;
+        /* Make each div take full width */
+        padding: 10px;
+        /* Add some padding to each item */
+    }
+
+    #Beginer .row img {
+        width: 100%;
+        height: 14rem;
+        /* Auto height for better responsiveness */
+        /* Auto height for better responsiveness */
+        border-top-right-radius: 34px;
+        border-bottom-left-radius: 0;
+    }
+}
+
+#Beginer h4 {
+    font-size: 33px;
+    padding-bottom: 28px;
+    font-family: monospace;
+}
+
+/*################################################################################################################################---- Category */
+
+#category .row {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+#category {
+    margin-bottom: 30px;
+
+}
+
+#category .row .card {
+    width: 13rem;
+    height: 170px;
+    display: flex;
+    align-content: center;
+    flex-wrap: nowrap;
+    border: none;
+    border-radius: 20px;
+}
+
+#category .row .card:hover {
+    padding-top: 19px;
+    cursor: pointer;
+    transition: 500ms;
+    border: none;
+    padding-bottom: 0vh;
+    margin-bottom: 0vh;
+}
+
+#category .row img {
+    width: 13rem;
+    height: 126px;
+    border-radius: 20px;
+
+}
+
+#category a {
+    text-decoration: none;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#category .row div:hover img {
+   
+    height: 126px;
+    transition: 300ms;
+
+}
+
+#category .row .card-body {
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+
+#category .row h5 {
+    font-size: 1em;
+    font-family: math;
+}
+
+#category h4 {
+    font-family: monospace;
+    font-size: 33px;
+    font-weight: 400;
+}
+
+/*################################################################################################################################---- Planguage */
+
+
+#service h4 {
+    font-size: 33px;
+    padding-bottom: 9px;
+    font-family: monospace;
+
+}
+
+p span {
+
+    font-size: 17px;
+    color: rgb(0, 0, 0);
+    font-weight: bolder;
+}
+
+p {
+
+    font-size: 15px;
+    color: rgb(0, 0, 0);
+    font-weight: 600;
+}
+
+#main-png {
+    width: 80px;
+    border-radius: 50%;
+    position: relative;
+    left: 30%;
+}
+
+#service .card {
+    border: none;
+    align-items: center;
+    height: 28rem;
+}
+
+.card-img-top {
+    width: auto;
+    height: 110px;
+}
+
+#service .card img {
+    width: 100%;
+    height: 166px;
+    border-radius: 20%;
+    transition-property: width;
+    transition-duration: 1s;
+}
+
+#service .card-title {
+    text-align: center;
+    font-size: 17px;
+    color: rgb(0, 0, 0);
+    font-weight: bolder;
+
+}
+
+#service .card-text {
+    text-align: center;
+    font-size: 15px;
+    color: rgb(0, 0, 0);
+    font-weight: 600;
+    width: 19em;
+    padding: 0px 12px;
+    font-family: math;
+}
+
+#service .card-body {
+    min-height: 17rem;
+}
+
+#service .row {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+
+#service .row {
+    overflow: auto;
+    /* or overflow-x: scroll; */
+    overflow-y: hidden;
+    white-space: nowrap;
+    padding: 30px 0px;
+}
+
+@media screen and (max-width: 400px) {
+    #service .row {
+        width: 372px;
+        padding: 0;
+    }
+
+    #service .container {
+        display: flex;
+        justify-content: center;
+    }
+
+    #service .card-body {
+        padding: 0;
+        width: 100%;
+    }
+
+    #service .card-body .card-text {
+        overflow-y: scroll;
+    }
+}
+
+#service .card-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    /* Allow text to wrap */
+}
+
+#service .row #content {
+    width: 33vw;
+}
+
+#banner #border1 {
+    width: 100%;
+}
+
+#footer #border2 {
+    width: 100%;
+}
+
+#service a {
+    margin-top: 10px;
+    font-family: math;
+}
+
+#service .container {
+    margin: 0;
+    padding: 0 10%;
+}
+
+#service .card {
+
+    background: linear-gradient(359deg, #e2f2ff, #c4c2ee);
+    box-shadow: 0 8px 7px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(25px);
+    border-radius: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.18);
+    padding: 25px 40px;
+    border-radius: 30px;
+}
+
+@media screen and (max-width: 763px) {
+    #service .card {
+        margin-top: 20px;
+        padding: 0;
+        height: 112vw;
+        margin-bottom: 35px;
+    }
+
+    #service .card img {
+        width: 90%;
+        padding-top: 10px;
+    }
+
+}
+
+
+/*################################################################################################################################---- Educator */
+
+#Educator .row {
+    display: flex;
+    background: linear-gradient(125deg, #dfdeff, #ffffff);
+    border-radius: 34px;
+    align-items: center;
+    height: 17rem;
+}
+
+#Educator .row #col {
+    display: flex;
+    justify-content: flex-end;
+}
+
+#Educator .row #col2 {
+    padding-left: 23px;
+}
+
+#Educator .row button {
+    background: #0070c3;
+    color: white;
+    width: 147px;
+    font-size: 21px;
+    border: none;
+    border-radius: 7px;
+    padding: 5px;
+    font-family: monospace;
+    transition: filter 0.3s ease;
+}
+
+#Educator .row button:hover {
+    filter: drop-shadow(0 0 4px rgb(126, 125, 125));
+    /* Apply drop shadow effect on hover */
+}
+
+
+#Educator .row p {
+    font-size: 20px;
+    width: auto;
+    max-width: 879px;
+    color: black;
+    display: flex;
+    justify-content: center;
+    padding-right: 20px;
+    font-family: math;
+    padding-left: 20px;
+}
+
+#Educator .row img {
+    width: 21rem;
+    border-top-right-radius: 34px;
+    border-bottom-right-radius: 34px;
+}
+
+
+@media screen and (max-width: 1200px) {
+    #Educator .row p {
+        font-size: 1em;
+    }
+
+    #Educator .row {
+        width: auto;
+        display: flex;
+        flex-wrap: wrap;
+        padding-right: 0;
+        background: linear-gradient(125deg, #dfdeff, #ffffff);
+        height: 47vh;
+    }
+
+    #Educator .row img {
+        width: 100%;
+        height: 46vh;
+
+        border-bottom-left-radius: 35px;
+
+    }
+
+    #Educator .row #col {
+        padding: 0;
+    }
+
+    #Educator .row #col2 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-bottom: 12px;
+    }
+
+    #Educator .row p {
+        font-size: 1em;
+        width: auto;
+        font-family: math;
+    }
+
+    #Educator {
+        padding: 0px 10%;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    #Educator .row {
+        width: auto;
+        display: flex;
+        flex-wrap: nowrap;
+        padding-right: 0;
+        background: linear-gradient(125deg, #dfdeff, #ffffff);
+        height: 32rem;
+        flex-direction: column-reverse;
+    }
+
+    #Educator .row p {
+        font-size: 1em;
+    }
+
+    #Educator .row>div {
+        width: 100%;
+        /* Make each div take full width */
+        padding: 10px;
+        /* Add some padding to each item */
+    }
+
+    #Educator .row img {
+        width: 100%;
+        height: 14rem;
+        /* Auto height for better responsiveness */
+        /* Auto height for better responsiveness */
+        border-top-right-radius: 34px;
+        border-top-left-radius: 34px;
+        border-bottom-right-radius: 0px;
+        border-bottom-left-radius: 0px;
+    }
+}
+
+/*################################################################################################################################---- Platform */
+
+#platform #arrow {
+    color: rgb(255, 255, 255);
+    font-size: 22px;
+    font-weight: bolder;
+
+}
+
+#platform .Boxl {
+    background: #797979;
+    border-radius: 24px;
+    width: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#platform .Boxr {
+    background: #797979;
+    border-radius: 24px;
+    width: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.platform {
+    margin: 20px 0px 30px 0px;
+}
+
+#crpi {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(to right, rgb(255 255 255), rgb(239 239 239));
+}
+
+.crouselimg {
+    width: 23rem;
+}
+
+.crouselimg img {
+    width: 35vw;
+    height: 25rem;
+}
+.crouseltxt {
+    width: 42rem;
+}
+.crouseltxt P {
+    width: 31rem;
+    font-size: 1em;
+    font-weight: 600;
+    color: black;
+    font-family: math;
+}
+
+.crouseltxt h4 {
+    font-size: 33px;
+    padding-bottom: 28px;
+    font-family: monospace;
+}
+
+.crouseltxt button {
+    width: 111px;
+    width: 111px;
+    color: rgb(255, 255, 255);
+    background: #035f71;
+    padding: 3px;
+    border: none;
+    font-size: 18px;
+    border-radius: 20px;
+    font-family: math;
+}
+
+@media screen and (max-width: 940px) {
+    #crpi {
+        display: flex;
+        flex-direction: column;
+        background: linear-gradient(to bottom, rgb(255 255 255), rgb(239 239 239));
+    }
+
+    .crouselimg img {
+        width: auto;
+        height: 15rem;
+    }
+
+    .crouseltxt P {
+        width: 17rem;
+        max-height: 74px;
+        overflow-x: scroll;
+
+    }
+
+    .crouseltxt h4 {
+        padding-bottom: 0;
+        display: flex;
+        justify-content: center;
+    }
+
+    #platform .Boxl {
+        background: #797979;
+        border-radius: 24px;
+        width: 35px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        left: -42px;
+    }
+
+    #platform .Boxr {
+        background: #797979;
+        border-radius: 24px;
+        width: 35px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        right: -42px;
+    }
+}

@@ -1,0 +1,31 @@
+-> login with google (25/4)
+	:- save user data in database as same a registered
+
+-> payment gateway (26/4)
+
+-> video extra (28/4)
+	:- save video
+
+-> course filter (29/4)	
+//----------------------------------------------------------------- Done
+-> saved data with payement in database
+
+-> unloack video for paid users
+
+-> User dashboard (27/4)
+
+-> Seller page design
+
+-> Seller page form Submission
+
+-> Super admin setup
+
+-> update Ui
+
+------------------------------------------------------------------------------------------- Extra
+-> youtube videos with private urls
+
+-> chat bot api usage (27/4)
+	:- pre recorded reply
+	:- Live Chat with Educator
+	:- notify user when course educator is live with green svg 

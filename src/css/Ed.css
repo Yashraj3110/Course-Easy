@@ -1,0 +1,155 @@
+
+/* ///////////////////////////////////////////////////////////////////////// USER LOG */
+
+#EducatorLogform p {
+    color: black;
+}
+
+#EducatorLogform .modal-content {
+    right: 6rem;
+    width: 43rem;
+    border-radius: 16px;
+    margin-top: 20%;
+}
+
+#EducatorLogform .modalLog {
+    display: flex;
+    background: url('../media/logbg2.jpg') no-repeat;
+    background-size: cover;
+    border-radius: 16px;
+}
+
+#EducatorLogform .logBrief {
+    flex-basis: 30%;
+    height: 100%;
+    padding: 0 5px;
+
+
+}
+
+#EducatorLogform .logBrief i {
+    color: #fffefe;
+    position: absolute;
+    left: 10px;
+    top: 3px;
+    cursor: pointer;
+}
+
+#EducatorLogform .logBrief p {
+    padding-top: 30px;
+    font-family: monospace;
+    color: #ffffff;
+    font-size: 17px;
+}
+
+#EducatorLogform .changeform {
+    padding-left: 20px;
+}
+
+/* /////////--------------- SIGN-UP */
+
+#EducatorLogform .Signup {
+    flex-basis: 70%;
+    background: #fffefe;
+    border-top-right-radius: 16px;
+    border-bottom-right-radius: 16px;
+}
+
+#EducatorLogform .Signup div {
+    width: auto;
+    margin: 10px 20px;
+}
+
+#EducatorLogform .Signup div input {
+    border: none;
+    border-bottom: 1px solid rgb(150, 150, 150);
+    border-radius: 0;
+    box-shadow: none;
+    width: 95%;
+    margin-left: 16px;
+}
+
+#EducatorLogform .Signup button {
+    margin: 30px 0 40px 0;
+    background-color: rgb(68, 114, 141);
+    border: none;
+    border-radius: 20px;
+    padding: 5px;
+    color: #fffefe;
+    width: 90%;
+}
+
+/* /////////--------------- SIGN-IN */
+#EducatorLogform .Signin {
+    flex-basis: 70%;
+    background: #fffefe;
+    border-top-right-radius: 16px;
+    border-bottom-right-radius: 16px;
+}
+
+#EducatorLogform .Signin div {
+    width: auto;
+    margin: 10px 20px;
+}
+
+#EducatorLogform .Signin div input {
+    border: none;
+    border-bottom: 1px solid rgb(150, 150, 150);
+    border-radius: 0;
+    box-shadow: none;
+    width: 95%;
+    margin-left: 16px;
+}
+
+#EducatorLogform .Signin button {
+    margin: 30px 0 11.7rem 0;
+    background-color: rgb(68, 114, 141);
+    border: none;
+    border-radius: 20px;
+    padding: 5px;
+    color: #fffefe;
+    width: 90%;
+}
+
+@media (max-width: 768px) {
+    #EducatorLogform .modal-content {
+        width: 100%;
+        right: 0;
+        margin-top: 7%;
+
+    }
+
+    #EducatorLogform .modalLog {
+        flex-direction: column;
+    }
+
+    #EducatorLogform .logBrief {
+        flex-basis: auto;
+        height: auto;
+        padding: 20px;
+    }
+
+    #EducatorLogform .Signup,
+    #EducatorLogform .Signin {
+        flex-basis: auto;
+        border-bottom-right-radius: 16px;
+        border-bottom-left-radius: 16px;
+        border-top-right-radius: 0;
+    }
+
+    #EducatorLogform .Signup div,
+    #EducatorLogform .Signin div {
+        margin: 10px 0;
+    }
+
+    #EducatorLogform .Signup button,
+    #EducatorLogform .Signin button {
+        margin: 20px 0;
+    }
+
+    #EducatorLogform .changeform {
+        padding-left: 20px;
+        padding-bottom: 20px;
+    }
+
+}
