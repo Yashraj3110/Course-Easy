@@ -184,6 +184,7 @@ const Coursein = () => {
         console.log(lecture)
         setSelectedVideo(lecture)
         GetLecturesComment(lecture.LectureID);
+        getsaveFromDatabase(lecture)
     };
     const GetCoursedata = async () => {
         const response = await axios.get(`${apiUrl}/api/course/data/${Id}`);
@@ -268,6 +269,24 @@ const Coursein = () => {
         if (response) {
             console.log(response.data)
 
+        }
+
+    };
+    const getsaveFromDatabase = async (e) => {
+        const lecturedata = e;
+        const Userdata = sessionData;
+
+        const response = await axios.get(`${apiUrl}/api/lecture/check`,
+            {
+                params: {
+                    lectureID: lecturedata.LectureID, userID: Userdata.UserID
+                }
+            }
+        );
+        if (response.data.saved) {
+            setsaved(true);
+        } else {
+            setsaved(false);
         }
 
     };

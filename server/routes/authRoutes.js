@@ -537,6 +537,27 @@ router.post('/api/lecture/remove', async (req, res) => {
     }
 });
 
+router.get('/api/lecture/check', async (req, res) => {
+    try {
+        const { userID, lectureID } = req.query;
+        console.log(lectureID)
+        console.log(userID)
+        if (!userID || !lectureID) {
+            return res.status(400).json({ saved: false, message: 'UserID and LectureID are required' });
+        }
+
+        const user = await UsersavedVideo.findOne({ UserID: userID, 'savedVideos.LectureID': lectureID });
+       
+        if (user) {
+            res.status(200).json({ saved: true });
+        } else {
+            res.status(200).json({ saved: false });
+        }
+    } catch (error) {
+        console.error('Error checking saved video:', error);
+        res.status(500).send('Server Error');
+    }
+});
 /// ##########################################################################################------------------  Payment intigration
 
 const instance = new razorpay({
