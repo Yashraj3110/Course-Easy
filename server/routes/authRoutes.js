@@ -16,6 +16,7 @@ const UsersavedVideo = require("../model/SavevideoSchema")
 const razorpay = require('razorpay');
 const Payment = require("../model/PaymentSchema")
 const axios = require('axios');
+const { Console } = require('console');
 
 // Create a new MongoDBSession instance with your MongoDB URI and collection name
 const store = new MongoDBSession({
@@ -623,4 +624,25 @@ router.post('/api/paymentverification', async (req, res) => {
     }
 });
 
+router.get('/api/check/payment', async (req, res) => {
+
+    try {
+        const data = req.query.User;
+        const course = req.query.Course;
+
+
+        // Find payment records based on UserID and CourseID
+        const exdata = await Payment.find({ UserID: data.UserID, CourseID: course.CourseID });
+
+        if (exdata.length > 0) {
+            res.status(200).json(exdata);
+        } else {
+            res.status(202).json({ success: false, message: 'No payment records found for the user and course' });
+        }
+
+    } catch (error) {
+
+        res.status(500).send('Server Error');
+    }
+});
 module.exports = router;

@@ -25,6 +25,10 @@ const UserSchema = new mongoose.Schema({
     type: String,
     unique: true
   },
+  googleId: {
+    type: String,
+    unique: true
+  },
   date: {
     type: Date,
     default: Date.now

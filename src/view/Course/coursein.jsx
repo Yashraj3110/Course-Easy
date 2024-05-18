@@ -23,7 +23,7 @@ const Coursein = () => {
     const [SelectedVideo, setSelectedVideo] = useState(null)
     const [loading, setLoading] = useState(true); // Track loading state
     const [dialogOpen, setDialogOpen] = useState(false);
-    const [sessionData, setSessionData] = useState(sesData);
+    const [sessionData, setSessionData] = useState();
     const [UserComment, setUserComment] = useState('')
     const [Comments, setComments] = useState([])
     const [activeReplyBox, setActiveReplyBox] = useState(null);
@@ -33,24 +33,32 @@ const Coursein = () => {
     const [isPurchased, setisPurchased] = useState(false)
 
     useEffect(() => {
-
-        const userSessionData = localStorage.getItem('UserSession');
-        const userData = JSON.parse(userSessionData);
-        setSessionData(userData);
+        handleSession();
         GetCoursedata();
         GetLectures();
+
+
+
 
     }, [])
 
     // Check session status on component mount
 
+    const handleSession = async () => {
+        const userSessionData = localStorage.getItem('UserSession');
+        const userData = JSON.parse(userSessionData);
+        console.log(userData);
+
+        setSessionData(userData);
+
+    };
     const handlePurchaseClick = async () => {
 
 
         if (sessionData) {
             const response = await axios.post(`${apiUrl}/api/payment/checkout`, { Course: Course, User: sessionData });
             const order = response.data.order;
-            console.log(sessionData)
+            console.log("This is checkout", sessionData)
             const options = {
 
                 amount: order.amount,
@@ -77,6 +85,24 @@ const Coursein = () => {
             // If the user is not logged in, open the login dialog
             setDialogOpen(true);
         }
+    };
+    const handlecheckreg = async (courseData) => {
+        const userSessionData = localStorage.getItem('UserSession');
+        const userData = JSON.parse(userSessionData);
+        const response = await axios.get(`${apiUrl}/api/check/payment`, {
+            params: {
+                User: userData,
+                Course: courseData
+            }
+
+        });
+        console.log(response.data)
+        if (response.status === 200) {
+            setisPurchased(true)
+
+        }
+        setLoading(false)
+
     };
     const handleCommentpost = async () => {
 
@@ -163,15 +189,17 @@ const Coursein = () => {
         const response = await axios.get(`${apiUrl}/api/course/data/${Id}`);
         if (response) {
             setCourse(response.data[0])
+            handlecheckreg(response.data[0]);
 
         }
+
 
     }
     const GetLectures = async () => {
         const response = await axios.get(`${apiUrl}/api/public/course/lecture/${Id}`);
         if (response) {
             setLectures(response.data)
-            setLoading(false)
+
         }
 
     }
@@ -260,18 +288,10 @@ const Coursein = () => {
         }
     };
     return (<>
-        {loading ? (
-            <div >
 
-            </div>
-        ) : (
-            <>
-                <ResponsiveAppBar sesData={sessionData} />
+        <ResponsiveAppBar sesData={sessionData} />
 
-            </>
-        )
 
-        }
         <section id="coursesin" style={{ paddingTop: "30px" }}  >
             <div>
                 <h4></h4>
@@ -425,14 +445,22 @@ const Coursein = () => {
                                                 color: "#0000c2",
                                             }}>price : {Course.Course_price} Rs </p>
                                         </div>
-                                        <div style={{ display: "flex", justifyContent: "space-between" }}>
+                                        {isPurchased ? (<div style={{ display: "flex", justifyContent: "space-between" }}>
+                                            <button className='Demo' onClick={() => handleVideoSelect(Lectures[0])}>
+                                                Start
+                                            </button>
+                                            <button className='enroll' >
+                                                Purshased
+                                            </button>
+                                        </div>) : (<div style={{ display: "flex", justifyContent: "space-between" }}>
                                             <button className='Demo' onClick={() => handleVideoSelect(Lectures[0])}>
                                                 Watch Demo
                                             </button>
                                             <button className='enroll' onClick={handlePurchaseClick}>
                                                 Enroll Now
                                             </button>
-                                        </div>
+                                        </div>)}
+
                                         {dialogOpen && <LoginDialog open={dialogOpen} setDialogOpen={setDialogOpen} />}
                                         <h4></h4>
                                     </div>
@@ -461,7 +489,7 @@ const Coursein = () => {
                                                 </div>
                                             </div>
                                         ))}
-                                        
+
                                     </div>
 
                                 </div>

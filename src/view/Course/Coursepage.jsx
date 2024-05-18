@@ -67,19 +67,15 @@ const CoursePage = () => {
 
 
     return (<>
-        {loading ? (
-            <div >
 
-            </div>
-        ) : (
-            <>
-                <ResponsiveAppBar sesData={sessionData} />
-                <div></div>
-                <div style={{ marginTop: "30px", paddingLeft: "20px" }}>
-                    <h4>{topic}</h4>
-                </div>
-            </>
-        )}
+
+        <ResponsiveAppBar sesData={sessionData} />
+        <div></div>
+        <div style={{ marginTop: "30px", paddingLeft: "20px" }}>
+            <h4>{topic}</h4>
+        </div>
+
+
         <section id='filter'>
 
             <div class="container-fluid" >
