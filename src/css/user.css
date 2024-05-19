@@ -23,6 +23,12 @@
 }
 
 .navlist li:hover {
+    
+    color: rgb(187, 198, 255);
+
+    transition: 200ms;
+}
+.navlist .selected {
     background: linear-gradient(268deg, #54524f, #040c42);
     color: white;
     padding: 18px 7px;

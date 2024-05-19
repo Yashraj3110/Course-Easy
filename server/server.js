@@ -42,9 +42,11 @@ app.get("/", async (req, res) => {
     res.json("Hello");
 });
 
-app.use(cors());
-app.use(bodyParser.json({ limit: '1mb' }));
-app.use(bodyParser.urlencoded({ extended: true, limit: '1mb' }));
+app.use(cors({
+    origin: 'http://localhost:3000'
+}));
+app.use(bodyParser.json({ limit: '5mb' }));
+app.use(bodyParser.urlencoded({ extended: true, limit: '5mb' }));
 app.use(express.json());
 app.use(cookieparser());
 app.use('/', require('./routes/authRoutes'))

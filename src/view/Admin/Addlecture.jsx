@@ -15,6 +15,7 @@ const Coursearray = {
 const AddLecture = () => {
     const [LectureData, setLectureData] = useState(Lecturearray);
     const [Courses, setCourses] = useState([])
+    const [SessionData, setSessionData] = useState(null);
     const [selectedCourse, setSelectedCourse] = useState(Coursearray);
     const [Thumbnail, setThumbnail] = useState('no file chosen');
 
@@ -36,7 +37,7 @@ const AddLecture = () => {
             return;
             // Add logic to display an error message to the user or prevent form submission
         }
-        const response = await axios.post(`${apiUrl}/api/educator/lecture/create`, LectureFormData);
+        const response = await axios.post(`${apiUrl}/api/educator/lecture/create`, LectureFormData );
         console.log(response);
         setThumbnail('no file chosen');
         setSelectedCourse(Coursearray);
@@ -74,17 +75,25 @@ const AddLecture = () => {
         reader.readAsDataURL(file);
     };
     async function courselist() {
-        const response = await axios.get(`${apiUrl}/api/educator/course/data`);
+        const EducatorSessionData = localStorage.getItem('EducatorSession');
+        const EduData = JSON.parse(EducatorSessionData);
+
+        setSessionData(EduData);
+        const response = await axios.get(`${apiUrl}/api/educator/course/data`, {
+            params: {
+                educatorID: EduData.educatorID
+            }
+        });
         setCourses(response.data)
     }
     function isYouTubeUrl(url) {
         // Regular expression pattern to match YouTube video URLs
         const youtubeRegex = /^(http(s)?:\/\/)?((w){3}.)?youtu(be|.be)?(\.com)?\/.+/;
-    
+
         // Test the URL against the regular expression
         return youtubeRegex.test(url);
     }
-    
+
     return (
         <div>
             <h3>Add Lecture</h3>

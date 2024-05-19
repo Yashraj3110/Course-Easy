@@ -1,11 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import duser from "../../media/demo user.png"
 
-const UserDetails = ({ userData }) => {
-  const [sessionData, setsessionData] = useState(userData)
+const UserDetails = () => {
+  
+  const [sessionData, setsessionData] = useState('')
+
   useEffect(() => {
-    console.log("Sesaa", sessionData);
-  }, [sessionData]); // Include sessionData in the dependency array
+    const userSessionData = localStorage.getItem('UserSession');
+    const userData = JSON.parse(userSessionData);
+    setsessionData(userData);
+   
+  }, []); // Include sessionData in the dependency array
   return (
     <div>
       <h3>User Details</h3>

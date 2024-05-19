@@ -34,32 +34,31 @@ const AdminPage = () => {
             setstyle("navbar-nav bg-gradient-primary sidebar sidebar-dark accordion");
         }
     }
-    axios.defaults.withCredentials = true;
     const handelClickli = (e) => {
         setSelectedOption(e);
     };
 
     useEffect(() => {
-        Authcheck();
+      
 
     }, [])
 
 
-    const Authcheck = async (e) => {
-        try {
-            const response = await axios.get(`${apiUrl}/api/educator/authchecker`);
-            const Verify = response.data.valid
-            if (Verify == true) {
-                const Sdata = response.data.Session;
-                setSessionData(Sdata);
-            } else {
-                navigate('/HomePage')
-            }
+    // const Authcheck = async (e) => {
+    //     try {
+    //         const response = await axios.get(`${apiUrl}/api/educator/authchecker`);
+    //         const Verify = response.data.valid
+    //         if (Verify == true) {
+    //             const Sdata = response.data.Session;
+    //             setSessionData(Sdata);
+    //         } else {
+    //             navigate('/HomePage')
+    //         }
 
-        } catch (error) {
-            console.error("Error:", error);
-        }
-    };
+    //     } catch (error) {
+    //         console.error("Error:", error);
+    //     }
+    // };
     const handleLogout = async () => {
         // Make an HTTP request to your backend API endpoint to log out
         const response = await axios.delete(`${apiUrl}/api/educator/logout`);

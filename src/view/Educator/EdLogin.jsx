@@ -73,6 +73,7 @@ function LoginDialog2({ open, setDialogOpen }) {
             setDialogOpen(false);
             if (response.status === 200) {
                 console.log("login successfully");
+                localStorage.setItem('EducatorSession', JSON.stringify(response.data.educatorData));
                 setlogin(EducatorLogin);
                 
                 navigate('/Admin')

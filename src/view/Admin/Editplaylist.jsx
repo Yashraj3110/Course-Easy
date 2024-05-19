@@ -7,7 +7,8 @@ function YourComponent() {
     const [lectureData, setLectureData] = useState([]);
     const [lectureEdit, setlectureEdit] = useState('')
     const [EditModal, setEditModal] = useState(false);
-    const [DeleteModal, setDeleteModal] = useState(false)
+    const [DeleteModal, setDeleteModal] = useState(false);
+    const [SessionData, setSessionData] = useState(null);
 
     const apiUrl = process.env.REACT_APP_API_URL;
     
@@ -18,7 +19,15 @@ function YourComponent() {
 
     const fetchCourses = async () => {
         try {
-            const response = await axios.get(`${apiUrl}/api/educator/course/data`);
+            const EducatorSessionData = localStorage.getItem('EducatorSession');
+            const EduData = JSON.parse(EducatorSessionData);
+    
+            setSessionData(EduData);
+            const response = await axios.get(`${apiUrl}/api/educator/course/data`,{
+                params: {
+                    educatorID: EduData.educatorID
+                }
+            });
             setCourses(response.data);
 
 

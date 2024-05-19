@@ -7,16 +7,28 @@ function Editcourse() {
     const [EditModal, setEditModal] = useState(false);
     const [DeleteModal, setDeleteModal] = useState(false);
     const [Thumbnail, setThumbnail] = useState(null);
+    const [SessionData, setSessionData] = useState(null);
 
     const apiUrl = process.env.REACT_APP_API_URL;
-    
+
     useEffect(() => {
+
+
         fetchCourses();
     }, []);
 
     const fetchCourses = async () => {
         try {
-            const response = await axios.get(`${apiUrl}/api/educator/course/data`);
+            const EducatorSessionData = localStorage.getItem('EducatorSession');
+            const EduData = JSON.parse(EducatorSessionData);
+
+            setSessionData(EduData);
+            console.log(EduData)
+            const response = await axios.get(`${apiUrl}/api/educator/course/data`, {
+                params: {
+                    educatorID: EduData.educatorID
+                }
+            });
             setCourses(response.data);
             console.log(response.data)
 
@@ -56,8 +68,8 @@ function Editcourse() {
         }
         const HandelSubmit = async (e) => {
             e.preventDefault();
-            const Data = { ...NewCourse, Thumbnail }
-
+            const Data = { ...NewCourse, Thumbnail, SessionData }
+        
             try {
                 const response = await axios.post(`${apiUrl}/api/educator/course/update`, Data);
                 if (response) {
@@ -153,7 +165,7 @@ function Editcourse() {
 
                             <div class="mb-3">
                                 <label for="price" class="form-label">Lecture Thumbnail</label>
-                                <input type="file" class="form-control" id="image" onChange={handleImageChange} accept="image/*"  />
+                                <input type="file" class="form-control" id="image" onChange={handleImageChange} accept="image/*" />
                             </div>
 
                             <div class="mb-3 form-check">

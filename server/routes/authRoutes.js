@@ -57,7 +57,7 @@ router.post('/api/educator/register', async (req, res) => {
         await newEducator.save();
         res.status(200).json({ message: 'Educator registered successfully' });
     } catch (error) {
-        console.log(error)
+
         res.status(500).send('Server Error');
     }
 });
@@ -82,24 +82,13 @@ router.post('/api/educator/login', async (req, res) => {
             email: educator.email
         };
 
-        // Save educatorData in session
-        req.session.educator = educatorData;
-
-        res.json({ login: true, msg: "Logged In Successfully" });
+        res.json({ login: true, educatorData, msg: "Logged In Successfully" });
     } catch (error) {
-        console.log(error);
+
         res.status(500).send('Server Error');
     }
 });
 
-router.get("/api/educator/authchecker", (req, res) => {
-    if (req.session.educator) {
-        return res.json({ valid: true, Session: req.session.educator })
-    }
-    else {
-        return res.json({ valid: false })
-    }
-});
 
 router.delete('/api/educator/logout', (req, res) => {
     try {
@@ -142,7 +131,7 @@ router.post('/api/user/register', async (req, res) => {
         await newUser.save();
         res.status(200).json({ message: 'User registered successfully' });
     } catch (error) {
-        console.log(error)
+
         res.status(500).send('Server Error');
     }
 });
@@ -170,7 +159,7 @@ router.post('/api/user/login', async (req, res) => {
 
         res.json({ login: true, userData, msg: "Logged In Successfully" });
     } catch (error) {
-        console.log(error);
+
         res.status(500).send('Server Error');
     }
 });
@@ -178,25 +167,25 @@ router.post('/api/user/login', async (req, res) => {
 /// #############################################################################################################------------------  COURSE ROUTES
 router.post('/api/educator/course/create', async (req, res) => {
     try {
-        const data = req.body;
-        const educatorID = req.session.educator.educatorID;
-        const educatorname = req.session.educator.educatorname;
 
+        const sessionData = req.body.sessionData;
+        const Data = req.body;
         const newCourse = new Course({
 
-            Course_title: data.title,
-            Course_desc: data.desc,
-            Course_field: data.field,
-            Course_level: data.level,
-            Course_price: data.price,
-            EducatorID: educatorID,
-            EducatorName: educatorname,
-            CourseImage: data.Thumbnail,
+            Course_title: Data.title,
+            Course_desc: Data.desc,
+            Course_field: Data.field,
+            Course_level: Data.level,
+            Course_price: Data.price,
+            EducatorID: sessionData.educatorID,
+            EducatorName: sessionData.name,
+            CourseImage: Data.Thumbnail,
         });
+        
         await newCourse.save();
         res.status(200).json({ message: 'Course' });
     } catch (error) {
-        console.log(error)
+
         res.status(500).send('Server Error');
     }
 });
@@ -205,7 +194,9 @@ router.post('/api/educator/course/create', async (req, res) => {
 router.post('/api/educator/lecture/create', async (req, res) => {
     try {
         const data = req.body;
+        
         const course = req.body.selectedCourse;
+       
         const thumbnail = req.body.Thumbnail;
 
         // const uniqueID = uuidv4();
@@ -218,18 +209,18 @@ router.post('/api/educator/lecture/create', async (req, res) => {
             Course_price: data.price,
             Course_title: course.coursetitle,
             CourseID: course.courseID,
-            EducatorID: req.session.educator.educatorID,
+            EducatorID: course.educatorID,
         });
         await newCourse.save();
         res.status(200).json({ message: 'Lecture' });
     } catch (error) {
-        console.log(error)
+
         res.status(500).send('Server Error');
     }
 });
 
 router.get("/api/educator/course/data", async (req, res) => {
-    const educatorID = req.session.educator.educatorID;
+    const { educatorID } = req.query;
     try {
 
         const courses = await Course.find({
@@ -241,7 +232,7 @@ router.get("/api/educator/course/data", async (req, res) => {
     }
 });
 router.get("/api/educator/lecture/data", async (req, res) => {
-    const educatorID = req.session.educator.educatorID;
+    const { educatorID } = req.query;
     try {
 
         const courses = await Lecture.find({
@@ -265,7 +256,7 @@ router.get('/api/lectures/course/:courseID', async (req, res) => {
         res.status(500).json({ message: 'Server Error' });
     }
 });
-router.post('/api/educator/lecture/update', sessionChecker, async (req, res) => {
+router.post('/api/educator/lecture/update', async (req, res) => {
     try {
         // Find the lecture based on LectureID
         const lecture = await Lecture.findOne({ LectureID: req.body.LectureID });
@@ -308,11 +299,12 @@ router.post('/api/educator/course/Delete/:CourseId', async (req, res) => {
     });
     res.status(200).json({ message: 'Course Deleted' });
 });
-router.post('/api/educator/Course/update', sessionChecker, async (req, res) => {
+router.post('/api/educator/Course/update', async (req, res) => {
     try {
         const Data = (req.body);
+        const educatorname = (req.body.SessionData.name);
         const CourseId = (req.body.CourseID);
-        const educatorname = req.session.educator.name;
+       
 
         // Find the lecture based on LectureID
         const course = await Course.findOne({ CourseID: CourseId });
@@ -400,7 +392,7 @@ router.get('/auth/google/callback',
         // Successful authentication, store user data in session
         let userData = req.user;
         req.session.user = userData;
-        console.log("User data stored in session:", req.session.user);
+
 
         // Send user data back to the client
         res.redirect(`http://localhost:3000/auth/google/success?userData=${encodeURIComponent(JSON.stringify(userData))}`);
@@ -482,7 +474,7 @@ router.post('/api/lecture/save', async (req, res) => {
                 }
             })
             .then(savedDocument => {
-                console.log('User saved videos successfully:');
+
                 res.status(201).send('Video saved');
                 // Respond with success message or any other necessary action
             })
@@ -493,7 +485,7 @@ router.post('/api/lecture/save', async (req, res) => {
 
 
     } catch (error) {
-        console.log(error)
+
         res.status(500).send('Server Error');
     }
 });
@@ -532,7 +524,7 @@ router.post('/api/lecture/remove', async (req, res) => {
             res.status(500).send('Server Error');
         }
     } catch (error) {
-        console.log(error)
+
         res.status(500).send('Server Error');
     }
 });
@@ -540,14 +532,13 @@ router.post('/api/lecture/remove', async (req, res) => {
 router.get('/api/lecture/check', async (req, res) => {
     try {
         const { userID, lectureID } = req.query;
-        console.log(lectureID)
-        console.log(userID)
+
         if (!userID || !lectureID) {
             return res.status(400).json({ saved: false, message: 'UserID and LectureID are required' });
         }
 
         const user = await UsersavedVideo.findOne({ UserID: userID, 'savedVideos.LectureID': lectureID });
-       
+
         if (user) {
             res.status(200).json({ saved: true });
         } else {
@@ -636,7 +627,7 @@ router.post('/api/paymentverification', async (req, res) => {
         }
         else {
             res.status(400).json({ success: false });
-            console.log("donse");
+
             console.log(error)
         }
     } catch (error) {
@@ -654,6 +645,63 @@ router.get('/api/check/payment', async (req, res) => {
 
         // Find payment records based on UserID and CourseID
         const exdata = await Payment.find({ UserID: data.UserID, CourseID: course.CourseID });
+
+        if (exdata.length > 0) {
+            res.status(200).json(exdata);
+        } else {
+            res.status(202).json({ success: false, message: 'No payment records found for the user and course' });
+        }
+
+    } catch (error) {
+
+        res.status(500).send('Server Error');
+    }
+});
+router.get('/api/purchased/courses/data', async (req, res) => {
+
+    try {
+        const data = req.query.userID;
+
+        // Find payment records based on UserID and CourseID
+        const exdata = await Payment.find({ UserID: data.UserID });
+
+        if (exdata.length > 0) {
+            res.status(200).json(exdata);
+        } else {
+            res.status(202).json({ success: false, message: 'No payment records found for the user and course' });
+        }
+
+    } catch (error) {
+
+        res.status(500).send('Server Error');
+    }
+});
+router.get('/api/saved/lectures', async (req, res) => {
+
+    try {
+        const data = req.query.userID;
+
+        // Find payment records based on UserID and CourseID
+        const exdata = await UsersavedVideo.find({ UserID: data.UserID });
+
+        if (exdata.length > 0) {
+            res.status(200).json(exdata);
+        } else {
+            res.status(202).json({ success: false, message: 'No payment records found for the user and course' });
+        }
+
+    } catch (error) {
+
+        res.status(500).send('Server Error');
+    }
+});
+router.get('/api/course/details', async (req, res) => {
+
+    try {
+
+
+        // Find payment records based on UserID and CourseID
+        const exdata = await Course.find();
 
         if (exdata.length > 0) {
             res.status(200).json(exdata);

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 
@@ -11,9 +11,18 @@ const Coursearray = {
 };
 const Addcourse = () => {
     const [coursedata, setcoursedata] = useState(Coursearray);
+    const [SessionData, setSessionData] = useState(null);
     const [Thumbnail, setThumbnail] = useState('no file chosen');
 
     const apiUrl = process.env.REACT_APP_API_URL;
+
+    useEffect(() => {
+        const EducatorSessionData = localStorage.getItem('EducatorSession');
+        const EduData = JSON.parse(EducatorSessionData);
+   
+        setSessionData(EduData);
+      }, [])
+    
 
     const HandelInputchange = (e) => {
         setcoursedata({ ...coursedata, [e.target.name]: e.target.value })
@@ -23,8 +32,12 @@ const Addcourse = () => {
         const Data = {
             ...coursedata, Thumbnail
         }
-        const response = await axios.post(`${apiUrl}/api/educator/course/create`, Data);
-        console.log(response)
+        const payload = {
+            ...Data,
+            sessionData: SessionData
+        };
+        const response = await axios.post(`${apiUrl}/api/educator/course/create`, payload);
+        console.log(payload)
         setcoursedata(Coursearray)
     };
     const handleImageChange = (e) => {

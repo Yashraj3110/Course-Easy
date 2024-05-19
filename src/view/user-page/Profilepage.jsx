@@ -96,10 +96,22 @@ const UserPage = () => {
                             </button>
                             <ul className={`navlist ${isOpen ? 'open' : ''}`}>
 
-                                <li onClick={() => handleClick('UserDetails')}>Profile Details</li>
-                                <li onClick={() => handleClick('UserForm')}>Profile Edit</li>
-                                <li onClick={() => handleClick('Purchased')}>Puchased Courses</li>
-                                <li onClick={() => handleClick('Saved')}>Saved Videos</li>
+                                <li
+                                    className={`${selectedPage === 'UserDetails' ? 'selected' : ''} ${isOpen ? 'open' : ''}`}
+                                    onClick={() => handleClick('UserDetails')}>Profile Details
+                                </li>
+                                <li
+                                    className={`${selectedPage === 'UserForm' ? 'selected' : ''} ${isOpen ? 'open' : ''}`}
+                                    onClick={() => handleClick('UserForm')}>Profile Edit
+                                </li>
+                                <li
+                                    className={`${selectedPage === 'Purchased' ? 'selected' : ''} ${isOpen ? 'open' : ''}`}
+                                    onClick={() => handleClick('Purchased')}>Puchased Courses
+                                </li>
+                                <li
+                                    className={`${selectedPage === 'Saved' ? 'selected' : ''} ${isOpen ? 'open' : ''}`}
+                                    onClick={() => handleClick('Saved')}>Saved Videos
+                                </li>
 
                             </ul>
                         </nav>

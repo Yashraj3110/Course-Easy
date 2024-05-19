@@ -20,7 +20,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Navigate to="/HomePage" />} />
         <Route path="/HomePage" element={<MainPage />} />
-        <Route path="*" element={<MainPage />} />
+       
         <Route path="/auth/google/success" element={<GoogleAuthSuccess />} />
 
 

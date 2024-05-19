@@ -367,10 +367,16 @@ const Coursein = () => {
                                         <div>
                                             <p>{Course.EducatorName}</p>
                                         </div>
+                                        {isPurchased ? (
+                                            <button className='enroll' >
+                                                Enrolled
+                                            </button>
+                                        ) : (
+                                            <button className='enroll' onClick={handlePurchaseClick}>
+                                                Enroll Now
+                                            </button>
+                                        )}
 
-                                        <button className='enroll' onClick={handlePurchaseClick}>
-                                            Enroll Now
-                                        </button>
                                         {/* Show the login dialog if dialogOpen state is true */}
                                         {dialogOpen && <LoginDialog open={dialogOpen} setDialogOpen={setDialogOpen} />}
                                     </div>
@@ -591,3 +597,4 @@ const Coursein = () => {
 };
 
 export default Coursein;
+
