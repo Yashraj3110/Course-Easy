@@ -147,7 +147,7 @@ const ResponsiveAppBar = ({ sesData }) => {
                       ))}
                     </div>
                   )}
-                 
+
                 </div>
               )}
 
@@ -184,31 +184,18 @@ const ResponsiveAppBar = ({ sesData }) => {
                   <><ul className="navbar-nav navhome">
 
 
+
+
                     <li className="nav-item">
                       <Link to="/User-profile" className="nav-link">
                         <p>
-                          <i class="bi bi-box2-heart-fill"></i>
-                          Watchlist
-                        </p>
-                      </Link>
-                    </li>
-                    <li className="nav-item">
-                      <Link to="/User-profile" className="nav-link">
-                        <p>
-                          <i class="bi bi-cart-fill"></i>
-                          Cart
-                        </p>
-                      </Link>
-                    </li>
-                    <li className="nav-item">
-                      <Link to="/User-profile" className="nav-link">
-                        <p>
+                          My Profile
                           <img src={sessionData.profileImage} style={{
                             height: "35px",
                             width: "38px",
                             borderRadius: "27px"
                           }} alt="" />
-                          My Profile
+
                         </p>
                       </Link>
                     </li>
@@ -218,8 +205,12 @@ const ResponsiveAppBar = ({ sesData }) => {
                         href="#"
                         onClick={handleLogout}
                       >
-                        <i className="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400" />
+                        <p>
 
+                          Log out
+
+                          <i className="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400" />
+                        </p>
                       </a>
 
                     </li>

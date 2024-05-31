@@ -12,7 +12,7 @@ const PaymentSchema = new mongoose.Schema({
     },
     Razorpay_signature: {
         type: String,
-        required: true
+       
     },
     CourseID: {
         type: String,
@@ -20,35 +20,35 @@ const PaymentSchema = new mongoose.Schema({
     },
     CourseImage: {
         type: String,
-        required: true
+      
     },
     EducatorID: {
         type: String,
-        required: true
+        
     },
     EducatorName: {
         type: String,
-        required: true
+        
     },
     Course_level: {
         type: String,
-        required: true
+        
     },
     Course_title: {
         type: String,
-        required: true
+        
     },
     Course_desc: {
         type: String,
-        required: true
+      
     },
     UserID: {
         type: String,
-        required: true
+       
     },
     email: {
         type: String,
-        required: true
+        
     },
     Username: {
         type: String,

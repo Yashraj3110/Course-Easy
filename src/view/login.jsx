@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "../css/user.css"
 import { useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 
 const accountinitialvalues = {
@@ -60,11 +62,38 @@ function LoginDialog({ open, setDialogOpen }) {
                 console.log("Data saved successfully");
                 setSignup(UserDetails);
                 setAccount(accountinitialvalues.login)
+                toast.success('Succesfully Registered', {
+                    position: "top-center",
+                    autoClose: 1250,
+                    hideProgressBar: true,
+                    closeOnClick: true,
+                    pauseOnHover: false,
+                    draggable: false,
+                    theme: "dark",
+                  });
             } else {
                 console.log("Error in saving the Data");
+                toast.warn('Error in Registration', {
+                    position: "top-center",
+                    autoClose: 1250,
+                    hideProgressBar: true,
+                    closeOnClick: true,
+                    pauseOnHover: false,
+                    draggable: false,
+                    theme: "dark",
+                  });
             }
         } catch (error) {
             console.error("Error:", error);
+            toast.warn(`Error in Registration`, {
+                position: "top-center",
+                autoClose: 1250,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: false,
+                theme: "dark",
+              });
         }
 
     };
@@ -174,6 +203,7 @@ function LoginDialog({ open, setDialogOpen }) {
                     </div>
                 </div>
             </div>
+            <ToastContainer />
         </>
     );
 };

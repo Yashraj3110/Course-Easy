@@ -4,6 +4,8 @@ import ResponsiveAppBar from '../Nav';
 import { SyncLoader } from "react-spinners";
 import user from "../../media/demo user.png";
 import axios from 'axios';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { useLocation } from 'react-router-dom';
 import LoginDialog from '../login';
 
@@ -34,7 +36,9 @@ const Coursein = () => {
 
     useEffect(() => {
         handleSession();
+
         GetCoursedata();
+
         GetLectures();
 
 
@@ -47,7 +51,7 @@ const Coursein = () => {
     const handleSession = async () => {
         const userSessionData = localStorage.getItem('UserSession');
         const userData = JSON.parse(userSessionData);
-        console.log(userData);
+
 
         setSessionData(userData);
 
@@ -67,7 +71,7 @@ const Coursein = () => {
                 description: "This is the description",
                 image: Course.CourseImage,
                 order_id: order.id,
-                callback_url: `${apiUrl}/api/paymentverification?Course=${JSON.stringify(Course)}&sessionData=${JSON.stringify(sessionData)}`,
+                callback_url: `${apiUrl}/api/paymentverification?Course=${JSON.stringify(Course.CourseID)}&sessionData=${JSON.stringify(sessionData)}`,
                 prefill: {
                     name: sessionData.name,
                     email: sessionData.email,
@@ -86,24 +90,7 @@ const Coursein = () => {
             setDialogOpen(true);
         }
     };
-    const handlecheckreg = async (courseData) => {
-        const userSessionData = localStorage.getItem('UserSession');
-        const userData = JSON.parse(userSessionData);
-        const response = await axios.get(`${apiUrl}/api/check/payment`, {
-            params: {
-                User: userData,
-                Course: courseData
-            }
 
-        });
-        console.log(response.data)
-        if (response.status === 200) {
-            setisPurchased(true)
-
-        }
-        setLoading(false)
-
-    };
     const handleCommentpost = async () => {
 
 
@@ -119,9 +106,18 @@ const Coursein = () => {
 
             const response = await axios.post(`${apiUrl}/api/lecture/comment`, { ComData });
             if (response) {
-                console.log(response.data)
+
                 setUserComment('')
                 GetLecturesComment(SelectedVideo.LectureID);
+                toast.success('Comment Posted', {
+                    position: "top-center",
+                    autoClose: 1250,
+                    hideProgressBar: true,
+                    closeOnClick: true,
+                    pauseOnHover: false,
+                    draggable: false,
+                    theme: "dark",
+                });
             }
         } else {
             // If the user is not logged in, open the login dialog
@@ -181,21 +177,52 @@ const Coursein = () => {
     };
 
     const handleVideoSelect = (lecture) => {
-        console.log(lecture)
+
         setSelectedVideo(lecture)
         GetLecturesComment(lecture.LectureID);
         getsaveFromDatabase(lecture)
     };
-    const GetCoursedata = async () => {
-        const response = await axios.get(`${apiUrl}/api/course/data/${Id}`);
-        if (response) {
-            setCourse(response.data[0])
-            handlecheckreg(response.data[0]);
+    const handlecheckreg = async () => {
+        const userSessionData = localStorage.getItem('UserSession');
+        const userData = JSON.parse(userSessionData);
+        const Id = CoursID.CourseID;
+
+        const response = await axios.get(`${apiUrl}/api/check/payment`, {
+            params: {
+                User: userData,
+                Course: Id
+            }
+
+        });
+
+        if (response.status === 200) {
+            setisPurchased(true)
 
         }
 
 
-    }
+
+
+    };
+    const GetCoursedata = async () => {
+        try {
+            const Id = CoursID.CourseID;
+            const response = await axios.get(`${apiUrl}/api/course/data/${Id}`);
+
+            if (response && response.data && response.data[0]) {
+
+                setCourse(response.data[0]);
+                handlecheckreg();
+            } else {
+                console.error("No data found in response");
+            }
+        } catch (error) {
+            console.error("Error fetching course data:", error);
+        } finally {
+            setLoading(false);
+
+        }
+    };
     const GetLectures = async () => {
         const response = await axios.get(`${apiUrl}/api/public/course/lecture/${Id}`);
         if (response) {
@@ -255,21 +282,31 @@ const Coursein = () => {
         const lecturedata = e;
         const Userdata = sessionData;
         const response = await axios.post(`${apiUrl}/api/lecture/save`, { lecture: lecturedata, user: Userdata });
-        if (response) {
-            console.log(response.data)
-
-        }
-
+        console.log("sasd")
+        toast.success('Lecture Saved!', {
+            position: "top-center",
+            autoClose: 1250,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: false,
+            theme: "dark",
+        });
     };
 
     const removeFromDatabase = async (e) => {
         const lecturedata = e;
         const Userdata = sessionData;
         const response = await axios.post(`${apiUrl}/api/lecture/remove`, { lecture: lecturedata, user: Userdata });
-        if (response) {
-            console.log(response.data)
-
-        }
+        toast.warn('Lecture Unsaved', {
+            position: "top-center",
+            autoClose: 1250,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: false,
+            theme: "dark",
+        });
 
     };
     const getsaveFromDatabase = async (e) => {
@@ -318,15 +355,7 @@ const Coursein = () => {
 
 
             <div className="container-fluid play-container">
-                <div className="helpdesk">
-                    <div>
-                        <i class="fa fa-comments-o" aria-hidden="true"></i>
-                    </div>
-                    <div>
-                        <p>Help Desk</p>
-                    </div>
 
-                </div>
                 {loading ? (
 
                     <div style={{ display: "flex", justifyContent: "center", overflowY: "hidden", marginTop: "18%" }}>
@@ -572,7 +601,7 @@ const Coursein = () => {
                                         </div>
                                     </div>
 
-
+                                    <ToastContainer />
 
 
 

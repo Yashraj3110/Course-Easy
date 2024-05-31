@@ -14,6 +14,7 @@ const User = require("./model/UserSchema")
 
 const MongoUri = process.env.MongoUri
 const PORT = process.env.DBPORT;
+const API_URL = process.env.REACT_APP_API_URL;
 const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
 const GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET;
 
@@ -42,9 +43,7 @@ app.get("/", async (req, res) => {
     res.json("Hello");
 });
 
-app.use(cors({
-    origin: 'http://localhost:3000'
-}));
+app.use(cors());
 app.use(bodyParser.json({ limit: '5mb' }));
 app.use(bodyParser.urlencoded({ extended: true, limit: '5mb' }));
 app.use(express.json());
@@ -61,7 +60,7 @@ app.use(passport.initialize());
 passport.use(new GoogleStrategy({
     clientID: GOOGLE_CLIENT_ID,
     clientSecret: GOOGLE_CLIENT_SECRET,
-    callbackURL: '/auth/google/callback',
+    callbackURL: `/auth/google/callback`,
     userProfileURL: 'https://www.googleapis.com/oauth2/v3/userinfo'
 }, async (accessToken, refreshToken, profile, done) => {
     try {

@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 
 const Coursearray = {
@@ -37,6 +39,15 @@ const Addcourse = () => {
             sessionData: SessionData
         };
         const response = await axios.post(`${apiUrl}/api/educator/course/create`, payload);
+        toast.success('Course Created', {
+            position: "top-center",
+            autoClose: 1250,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: false,
+            theme: "dark",
+          });
         console.log(payload)
         setcoursedata(Coursearray)
     };
@@ -74,8 +85,10 @@ const Addcourse = () => {
                         <select class="form-select" aria-label="Default select example" onChange={HandelInputchange} name='field' value={coursedata.field}>
                             <option disabled value="">Select category</option>
                             <option value="Web-development">Web development</option>
+                            <option value="Data-Science">Data Science</option>
                             <option value="Data-Analyst">Data Analyst</option>
                             <option value="Marketing">Marketing</option>
+                            <option value="Other">Other</option>
                         </select>
                     </div>
 
@@ -107,6 +120,7 @@ const Addcourse = () => {
                     <button class="btn btn-primary" >Create</button>
                 </form>
             </div>
+            <ToastContainer/>
         </div>
     );
 };

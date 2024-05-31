@@ -80,11 +80,11 @@ const CoursePage = () => {
 
             <div class="container-fluid" >
                 <div className="row">
-                    <h5>Filter :-</h5>
+                    
                     <div className="col-md-12">
                         <div className='filteropt'>
                             <div class="dropdown open">
-                                <a class="btn btn-secondary dropdown-toggle" type="button" id="triggerId" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" > Course level </a>
+                                <a class="btn btn-secondary dropdown-toggle" type="button" id="triggerId" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" > Course type </a>
                                 <div class="dropdown-menu" aria-labelledby="triggerId">
                                     <a class="dropdown-item" href="#" onClick={() => setFilteredCourses(Courses)}>All</a>
                                     <a class="dropdown-item" href="#" onClick={() => filterCoursesByLevel('Beginer')}>Beginner</a>

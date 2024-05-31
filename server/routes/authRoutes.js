@@ -24,7 +24,8 @@ const store = new MongoDBSession({
     collection: 'Sessions'
 });
 
-
+const API_URL = process.env.REACT_APP_API_URL;
+const APP_URL = process.env.REACT_APP_APP_URL;
 
 const sessionChecker = (req, res, next) => {
     // Check if session exists
@@ -181,7 +182,7 @@ router.post('/api/educator/course/create', async (req, res) => {
             EducatorName: sessionData.name,
             CourseImage: Data.Thumbnail,
         });
-        
+
         await newCourse.save();
         res.status(200).json({ message: 'Course' });
     } catch (error) {
@@ -194,9 +195,9 @@ router.post('/api/educator/course/create', async (req, res) => {
 router.post('/api/educator/lecture/create', async (req, res) => {
     try {
         const data = req.body;
-        
+
         const course = req.body.selectedCourse;
-       
+
         const thumbnail = req.body.Thumbnail;
 
         // const uniqueID = uuidv4();
@@ -304,7 +305,7 @@ router.post('/api/educator/Course/update', async (req, res) => {
         const Data = (req.body);
         const educatorname = (req.body.SessionData.name);
         const CourseId = (req.body.CourseID);
-       
+
 
         // Find the lecture based on LectureID
         const course = await Course.findOne({ CourseID: CourseId });
@@ -395,7 +396,7 @@ router.get('/auth/google/callback',
 
 
         // Send user data back to the client
-        res.redirect(`http://localhost:3000/auth/google/success?userData=${encodeURIComponent(JSON.stringify(userData))}`);
+        res.redirect(`${APP_URL}/auth/google/success?userData=${encodeURIComponent(JSON.stringify(userData))}`);
     }
 );
 
@@ -470,6 +471,7 @@ router.post('/api/lecture/save', async (req, res) => {
                         courseId: userData.CourseID,
                         savedVideos: [lectureData] // Add the lecture data to the savedVideos array
                     });
+                  
                     return newUserSavedVideos.save();
                 }
             })
@@ -585,7 +587,7 @@ router.post('/api/paymentverification', async (req, res) => {
     try {
 
         const { Course, sessionData } = req.query;
-
+console.log(Course)
         // Parse the JSON strings
         const parsedSession = JSON.parse(sessionData);
         const parsedCourse = JSON.parse(Course);
@@ -598,29 +600,23 @@ router.post('/api/paymentverification', async (req, res) => {
 
         if (isauth) {
 
-            const existingpayment = await Payment.findOne({ UserID: parsedSession.UserID, CourseID: parsedCourse.CourseID });
+            const existingpayment = await Payment.findOne({ UserID: parsedSession.UserID, CourseID: parsedCourse });
             if (existingpayment) {
-                res.redirect(`http://localhost:3000/course/${parsedCourse.CourseID}`)
+                res.redirect(`${APP_URL}/course/${parsedCourse}`)
             }
             else {
                 const newPayment = new Payment({
                     Razorpay_order_Id: razorpay_order_id,
                     Razorpay_payment_Id: razorpay_payment_id,
                     Razorpay_signature: razorpay_signature,
-                    CourseID: parsedCourse.CourseID,
-                    CourseImage: parsedCourse.CourseImage,
-                    EducatorID: parsedCourse.EducatorID,
-                    EducatorName: parsedCourse.EducatorName,
-                    Course_level: parsedCourse.Course_level,
-                    Course_title: parsedCourse.Course_title,
-                    Course_desc: parsedCourse.Course_desc,
+                    CourseID: parsedCourse,
                     UserID: parsedSession.UserID,
                     Username: parsedSession.name,
                     email: parsedSession.email,
 
                 });
                 newPayment.save();
-                res.redirect(`http://localhost:3000/course/${parsedCourse.CourseID}`)
+                res.redirect(`${APP_URL}/course/${parsedCourse}`)
 
             }
 
@@ -642,21 +638,25 @@ router.get('/api/check/payment', async (req, res) => {
         const data = req.query.User;
         const course = req.query.Course;
 
-
-        // Find payment records based on UserID and CourseID
-        const exdata = await Payment.find({ UserID: data.UserID, CourseID: course.CourseID });
-
-        if (exdata.length > 0) {
-            res.status(200).json(exdata);
-        } else {
-            res.status(202).json({ success: false, message: 'No payment records found for the user and course' });
+        if (data) {
+            //Find payment records based on UserID and CourseID
+            const exdata = await Payment.find({ UserID: data.UserID, CourseID: course });
+          
+            if (exdata.length > 0) {
+                res.status(200).json(exdata);
+                
+            } else {
+                res.status(202).json({ success: false, message: 'No payment records found for the user and course' });
+            }
         }
 
+       
     } catch (error) {
 
         res.status(500).send('Server Error');
     }
 });
+
 router.get('/api/purchased/courses/data', async (req, res) => {
 
     try {

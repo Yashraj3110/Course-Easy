@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Lecturearray = {
     title: "",
@@ -42,6 +43,15 @@ const AddLecture = () => {
         setThumbnail('no file chosen');
         setSelectedCourse(Coursearray);
         setLectureData(Lecturearray);
+        toast.success('lecture Added', {
+            position: "top-center",
+            autoClose: 1250,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: false,
+            theme: "dark",
+          });
 
     };
 
@@ -144,6 +154,7 @@ const AddLecture = () => {
                     <button type="submit" class="btn btn-primary">Create</button>
                 </form>
             </div>
+            <ToastContainer/>
         </div>
     );
 };

@@ -104,10 +104,10 @@ const UserPage = () => {
                                     className={`${selectedPage === 'UserForm' ? 'selected' : ''} ${isOpen ? 'open' : ''}`}
                                     onClick={() => handleClick('UserForm')}>Profile Edit
                                 </li>
-                                <li
+                                {/* <li
                                     className={`${selectedPage === 'Purchased' ? 'selected' : ''} ${isOpen ? 'open' : ''}`}
                                     onClick={() => handleClick('Purchased')}>Puchased Courses
-                                </li>
+                                </li> */}
                                 <li
                                     className={`${selectedPage === 'Saved' ? 'selected' : ''} ${isOpen ? 'open' : ''}`}
                                     onClick={() => handleClick('Saved')}>Saved Videos

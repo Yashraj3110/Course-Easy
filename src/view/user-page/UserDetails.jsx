@@ -25,10 +25,10 @@ const UserDetails = () => {
         </div>
         <div style={{ display: "flex" }}>
           <img src={sessionData.profileImage} class="card-img-top" alt="..." style={{
-            width: "17vw",
-            marginLeft: "23px",
+            width: "110px",
+            marginLeft: "43px",
             marginTop: "7px",
-            borderRadius: "7px"
+            borderRadius: "55px"
           }} />
           <div class="card-body">
             <h5 class="card-title">Name: {sessionData.name}</h5>
