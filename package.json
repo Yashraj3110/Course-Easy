@@ -25,7 +25,7 @@
     "start": "react-scripts start",
     "deploy": "concurrently \"npm run deploy:client\" \"npm run deploy:server\"",
     "dev": "concurrently \"npm run start\" \"npm run server\"",
-    "deploy:client": "serve -s build -l 3000",
+    "deploy:client": "serve -s build -l 8081",
     "deploy:server": "cd server &&  node server.js",
     "server": "cd server &&  nodemon server.js",
     "build": "react-scripts build",
