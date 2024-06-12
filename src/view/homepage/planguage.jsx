@@ -39,9 +39,9 @@ function planguage() {
                                             used and influential. By design, C's features cleanly reflect the.
                                             {" "}
                                         </p>
-                                        <a href="c.php" className="btn btn-primary">
+                                        {/* <a href="c.php" className="btn btn-primary">
                                             More details
-                                        </a>
+                                        </a> */}
                                     </div>
                                 </div>
                             </Tilt></center>
@@ -64,9 +64,9 @@ function planguage() {
 
                                             </p>
 
-                                            <a href="python.php" className="btn btn-primary" style={{ textAlign: "center" }}>
+                                            {/* <a href="python.php" className="btn btn-primary" style={{ textAlign: "center" }}>
                                                 More details
-                                            </a>
+                                            </a> */}
                                         </div>
                                     </div>
                                 </Tilt>
@@ -90,16 +90,16 @@ function planguage() {
                                                 there are replacements too for it i.e procs and lambda. The.
                                                 .
                                             </p>
-                                            <a href="ruby.php" className="btn btn-primary">
+                                            {/* <a href="ruby.php" className="btn btn-primary">
                                                 More details
-                                            </a>
+                                            </a> */}
                                         </div>
                                     </div>
                                 </Tilt>
 
                             </center>
                         </div>
-                        <div className="col" data-aos="zoom-in-up"> <center>
+                        {/* <div className="col" data-aos="zoom-in-up"> <center>
                             <Tilt options={defaultOptions} style={{ height: "auto", width: "18rem" }}>
                                 <div className="card" >
                                     <img src={c} className="card-img-top" alt="..." />
@@ -117,7 +117,7 @@ function planguage() {
                                     </div>
                                 </div>
                             </Tilt></center>
-                        </div>
+                        </div> */}
 
                     </div>
                 </div>
