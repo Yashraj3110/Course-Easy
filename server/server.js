@@ -60,7 +60,7 @@ app.use(passport.initialize());
 passport.use(new GoogleStrategy({
     clientID: GOOGLE_CLIENT_ID,
     clientSecret: GOOGLE_CLIENT_SECRET,
-    callbackURL: `/auth/google/callback`,
+    callbackURL: `http://server.yashraj.online/auth/google/callback`,
     userProfileURL: 'https://www.googleapis.com/oauth2/v3/userinfo'
 }, async (accessToken, refreshToken, profile, done) => {
     try {

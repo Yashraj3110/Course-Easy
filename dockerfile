@@ -1,9 +1,9 @@
 FROM node:20-alpine
-ENV PORT=3000
+ENV PORT=8081
 
 WORKDIR /app
-EXPOSE 5000
-EXPOSE 3000
+EXPOSE 8082
+EXPOSE 8081
 COPY . .
 RUN npm install -f
 RUN npm install -g concurrently
