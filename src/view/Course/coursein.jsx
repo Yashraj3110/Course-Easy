@@ -86,8 +86,15 @@ const Coursein = () => {
             const razor = new window.Razorpay(options);
             razor.open();
         } else {
-            // If the user is not logged in, open the login dialog
-            setDialogOpen(true);
+            toast.warn('You are not Logged in', {
+                position: "top-center",
+                autoClose: 1250,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: false,
+                theme: "dark",
+            });
         }
     };
 
@@ -281,17 +288,29 @@ const Coursein = () => {
     const saveToDatabase = async (e) => {
         const lecturedata = e;
         const Userdata = sessionData;
-        const response = await axios.post(`${apiUrl}/api/lecture/save`, { lecture: lecturedata, user: Userdata });
-        console.log("sasd")
-        toast.success('Lecture Saved!', {
-            position: "top-center",
-            autoClose: 1250,
-            hideProgressBar: true,
-            closeOnClick: true,
-            pauseOnHover: false,
-            draggable: false,
-            theme: "dark",
-        });
+        if (Userdata === null) {
+            toast.warn('You are not logged in', {
+                position: "top-center",
+                autoClose: 1250,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: false,
+                theme: "dark",
+            });
+        } else {
+            const response = await axios.post(`${apiUrl}/api/lecture/save`, { lecture: lecturedata, user: Userdata });
+            console.log("sasd")
+            toast.success('Lecture Saved!', {
+                position: "top-center",
+                autoClose: 1250,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: false,
+                theme: "dark",
+            });
+        }
     };
 
     const removeFromDatabase = async (e) => {
@@ -312,19 +331,24 @@ const Coursein = () => {
     const getsaveFromDatabase = async (e) => {
         const lecturedata = e;
         const Userdata = sessionData;
+        if (Userdata === null) {
 
-        const response = await axios.get(`${apiUrl}/api/lecture/check`,
-            {
-                params: {
-                    lectureID: lecturedata.LectureID, userID: Userdata.UserID
-                }
-            }
-        );
-        if (response.data.saved) {
-            setsaved(true);
+            console.log("User is not Logged in")
         } else {
-            setsaved(false);
+            const response = await axios.get(`${apiUrl}/api/lecture/check`,
+                {
+                    params: {
+                        lectureID: lecturedata.LectureID, userID: Userdata.UserID
+                    }
+                }
+            );
+            if (response.data.saved) {
+                setsaved(true);
+            } else {
+                setsaved(false);
+            }
         }
+
 
     };
 
@@ -378,16 +402,23 @@ const Coursein = () => {
                                 <h3 >{SelectedVideo.Lecture_title}</h3>
                                 <div className="play-video-info">
                                     <p> {formatDate(SelectedVideo.date)}</p>
-                                    <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="30" viewBox="0 0 50 50"
-                                        onClick={(e) =>
-                                            handleSaveClick(SelectedVideo)}>
-                                        {saved ? (
-                                            <path d="M 37 48 C 36.824219 48 36.652344 47.953125 36.496094 47.863281 L 25 41.15625 L 13.503906 47.863281 C 13.195313 48.042969 12.8125 48.046875 12.503906 47.867188 C 12.191406 47.6875 12 47.359375 12 47 L 12 3 C 12 2.449219 12.449219 2 13 2 L 37 2 C 37.554688 2 38 2.449219 38 3 L 38 47 C 38 47.359375 37.808594 47.6875 37.496094 47.867188 C 37.34375 47.957031 37.171875 48 37 48 Z"></path>
+                                    {sessionData === null ? (
+                                        <>
+                                        </>
+                                    ) : (
+                                        <>
+                                            <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="30" viewBox="0 0 50 50"
+                                                onClick={(e) =>
+                                                    handleSaveClick(SelectedVideo)}>
+                                                {saved ? (
+                                                    <path d="M 37 48 C 36.824219 48 36.652344 47.953125 36.496094 47.863281 L 25 41.15625 L 13.503906 47.863281 C 13.195313 48.042969 12.8125 48.046875 12.503906 47.867188 C 12.191406 47.6875 12 47.359375 12 47 L 12 3 C 12 2.449219 12.449219 2 13 2 L 37 2 C 37.554688 2 38 2.449219 38 3 L 38 47 C 38 47.359375 37.808594 47.6875 37.496094 47.867188 C 37.34375 47.957031 37.171875 48 37 48 Z"></path>
 
-                                        ) : (
-                                            <path d="M 12.8125 2 C 12.335938 2.089844 11.992188 2.511719 12 3 L 12 47 C 11.996094 47.359375 12.1875 47.691406 12.496094 47.871094 C 12.804688 48.054688 13.1875 48.054688 13.5 47.875 L 25 41.15625 L 36.5 47.875 C 36.8125 48.054688 37.195313 48.054688 37.503906 47.871094 C 37.8125 47.691406 38.003906 47.359375 38 47 L 38 3 C 38 2.449219 37.550781 2 37 2 L 13 2 C 12.96875 2 12.9375 2 12.90625 2 C 12.875 2 12.84375 2 12.8125 2 Z M 14 4 L 36 4 L 36 45.25 L 25.5 39.125 C 25.191406 38.945313 24.808594 38.945313 24.5 39.125 L 14 45.25 Z"></path>
-                                        )}
-                                    </svg>
+                                                ) : (
+                                                    <path d="M 12.8125 2 C 12.335938 2.089844 11.992188 2.511719 12 3 L 12 47 C 11.996094 47.359375 12.1875 47.691406 12.496094 47.871094 C 12.804688 48.054688 13.1875 48.054688 13.5 47.875 L 25 41.15625 L 36.5 47.875 C 36.8125 48.054688 37.195313 48.054688 37.503906 47.871094 C 37.8125 47.691406 38.003906 47.359375 38 47 L 38 3 C 38 2.449219 37.550781 2 37 2 L 13 2 C 12.96875 2 12.9375 2 12.90625 2 C 12.875 2 12.84375 2 12.8125 2 Z M 14 4 L 36 4 L 36 45.25 L 25.5 39.125 C 25.191406 38.945313 24.808594 38.945313 24.5 39.125 L 14 45.25 Z"></path>
+                                                )}
+                                            </svg>
+                                        </>
+                                    )}
                                 </div>
                                 <hr />
                                 <div className='Educator_details'>
@@ -423,7 +454,14 @@ const Coursein = () => {
 
                                         <img src={user} alt="" />
                                         <input type="text" placeholder='Comment your thoughts' name='usercomment' value={UserComment} onChange={(e) => handleComment(e)} />
-                                        <button type='submit' onClick={handleCommentpost}><i class="fa fa-comment" aria-hidden="true"></i></button>
+                                        {sessionData === null ? (
+                                            <>
+                                                <p></p>
+                                            </>
+                                        ) : (
+                                            <>
+                                                <button type='submit' onClick={handleCommentpost}><i class="fa fa-comment" aria-hidden="true"></i></button></>
+                                        )}
 
                                     </div>
                                     <h4 onClick={collapseComments}>Total comments : <b>{Comments.length}</b> {Collapsecomments === "collapse" ? (<i class="fa fa-angle-up" aria-hidden="true"></i>) : (<i class="fa fa-angle-down" aria-hidden="true"></i>)}</h4>
@@ -510,9 +548,20 @@ const Coursein = () => {
                                             <button className='Demo' onClick={() => handleVideoSelect(Lectures[0])}>
                                                 Watch Demo
                                             </button>
-                                            <button className='enroll' onClick={handlePurchaseClick}>
-                                                Enroll Now
-                                            </button>
+                                            {sessionData === null ? (
+                                                <>
+                                                    <button className='enrolln' >
+                                                        Enroll Now "Sign up required"
+                                                    </button>
+                                                </>
+                                            ) : (
+                                                <>
+                                                    <button className='enroll' onClick={handlePurchaseClick}>
+                                                        Enroll Now
+                                                    </button>
+                                                </>
+                                            )}
+
                                         </div>)}
 
                                         {dialogOpen && <LoginDialog open={dialogOpen} setDialogOpen={setDialogOpen} />}
