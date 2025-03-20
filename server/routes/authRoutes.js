@@ -46,8 +46,11 @@ router.post('/api/educator/register', async (req, res) => {
         if (educator) {
             return res.status(400).json({ error: 'Email already exists' });
         }
+       
+
         // Hash the password
         const hashedPassword = await bcrypt.hash(password, 10);
+       
         // Create a new Educator document
         const newEducator = new Educator({
             name: name,
@@ -55,8 +58,9 @@ router.post('/api/educator/register', async (req, res) => {
             phone: phone,
             password: hashedPassword
         });
+        console.log(newEducator)
         await newEducator.save();
-        res.status(200).json({ message: 'Educator registered successfully' });
+        // res.status(200).json({ message: 'Educator registered successfully' });
     } catch (error) {
 
         res.status(500).send('Server Error');
