@@ -75,7 +75,7 @@ function LoginDialog2({ open, setDialogOpen }) {
                 console.log("login successfully");
                 localStorage.setItem('EducatorSession', JSON.stringify(response.data.educatorData));
                 setlogin(EducatorLogin);
-                
+
                 navigate('/Admin')
 
             } else {
@@ -115,10 +115,17 @@ function LoginDialog2({ open, setDialogOpen }) {
                                             <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="password" onChange={onInputLogin} value={Login.password} />
                                             <label for="floatingPassword">Password</label>
                                         </div>
+
                                         <button onClick={HandelLogin}>Continue</button>
-                                        <p className="changeform" onClick={toggleSignup} role="button" tabIndex="0">
+
+
+                                        <div>
+                                            <h4>Login Details :- </h4>
+                                            <p> Email: 3110yashraj@gmail.com || password: 3110</p>
+                                        </div>
+                                        {/* <p className="changeform" onClick={toggleSignup} role="button" tabIndex="0">
                                             New Here? Create an account
-                                        </p>
+                                        </p> */}
                                     </div>
                                 ) : (
                                     <div className="Signup" >

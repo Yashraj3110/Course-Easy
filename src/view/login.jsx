@@ -62,38 +62,32 @@ function LoginDialog({ open, setDialogOpen }) {
                 console.log("Data saved successfully");
                 setSignup(UserDetails);
                 setAccount(accountinitialvalues.login)
-                toast.success('Succesfully Registered', {
-                    position: "top-center",
-                    autoClose: 1250,
-                    hideProgressBar: true,
-                    closeOnClick: true,
-                    pauseOnHover: false,
-                    draggable: false,
-                    theme: "dark",
-                  });
-            } else {
-                console.log("Error in saving the Data");
-                toast.warn('Error in Registration', {
-                    position: "top-center",
-                    autoClose: 1250,
-                    hideProgressBar: true,
-                    closeOnClick: true,
-                    pauseOnHover: false,
-                    draggable: false,
-                    theme: "dark",
-                  });
+
             }
         } catch (error) {
-            console.error("Error:", error);
-            toast.warn(`Error in Registration`, {
-                position: "top-center",
-                autoClose: 1250,
-                hideProgressBar: true,
-                closeOnClick: true,
-                pauseOnHover: false,
-                draggable: false,
-                theme: "dark",
-              });
+            if (error.response.status === 400) {
+                
+                toast.warn('Email already used', {
+                    position: "top-center",
+                    autoClose: 1250,
+                    hideProgressBar: true,
+                    closeOnClick: true,
+                    pauseOnHover: false,
+                    draggable: false,
+                    theme: "dark",
+                });
+            } else {
+                toast.warn(`Error in Registration`, {
+                    position: "top-center",
+                    autoClose: 1250,
+                    hideProgressBar: true,
+                    closeOnClick: true,
+                    pauseOnHover: false,
+                    draggable: false,
+                    theme: "dark",
+                });
+            }
+
         }
 
     };
@@ -101,12 +95,12 @@ function LoginDialog({ open, setDialogOpen }) {
         try {
             const response = await axios.post(`${apiUrl}/api/user/login`, { credentials: Login });
 
-            console.log("Logdata",response.data.userData);
+            console.log("Logdata", response.data.userData);
             setDialogOpen(false);
             if (response.status === 200) {
                 console.log("login successfully");
                 localStorage.setItem('UserSession', JSON.stringify(response.data.userData));
-                
+
                 setlogin(UserLogin);
                 window.location.reload()
             } else {

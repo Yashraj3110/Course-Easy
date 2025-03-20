@@ -357,6 +357,19 @@ a {
     box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
     margin-right: 32px;
 }
+.enrolln {
+    padding: 3px;
+    padding-left: 3px;
+    padding-right: 3px;
+    border-radius: 7px;
+    border: none;
+    background: linear-gradient(171deg, #636466, #6b6b6d, #6d6d6e);
+  
+    font-size: 15px;
+    color: #ffffff;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    margin-right: 32px;
+}
 .Demo{
     padding: 3px;
     width: 8rem;

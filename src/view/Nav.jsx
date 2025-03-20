@@ -161,7 +161,7 @@ const ResponsiveAppBar = ({ sesData }) => {
                         <Link to="/Educator" className="nav-link">
                           <p>
                             <i class="bi bi-person-video"></i>
-                            Become a partner
+                            Upcoming Updates
                           </p>
                         </Link>
                       </li>
@@ -183,7 +183,14 @@ const ResponsiveAppBar = ({ sesData }) => {
                 ) : (
                   <><ul className="navbar-nav navhome">
 
-
+                    <li className="nav-item">
+                      <Link to="/Educator" className="nav-link">
+                        <p>
+                          <i class="bi bi-person-video"></i>
+                          Upcoming Updates
+                        </p>
+                      </Link>
+                    </li>
 
 
                     <li className="nav-item">
@@ -199,6 +206,7 @@ const ResponsiveAppBar = ({ sesData }) => {
                         </p>
                       </Link>
                     </li>
+
                     <li className="nav-item">
 
                       <a
