@@ -36,6 +36,10 @@ const sessionChecker = (req, res, next) => {
     }
 };
 
+router.get('/ck', (req, res) => {
+    res.send('Hello from Vercel!');
+});
+
 
 /// #############################################################################################################------------------  EDUCATOR ROUTES
 router.post('/api/educator/register', async (req, res) => {
